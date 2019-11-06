@@ -1,4 +1,5 @@
-FROM elastic/elasticsearch:6.2.3
+#FROM elastic/elasticsearch:6.2.3
+FROM elastic/elasticsearch:7.4.2
 MAINTAINER dazuimao1990 <guox@goodrain.com>
 
 RUN yum makecache fast && \
