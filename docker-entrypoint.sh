@@ -8,8 +8,6 @@ sleep 10
 CURRENT_POD_NUM=$(nslookup ${SERVICE_NAME} | grep Address | sed '1d' | awk '{print $2}' | wc -l)
 [[ $DEBUG ]] && echo $(nslookup ${SERVICE_NAME})> ./logfile
 if [[ $CURRENT_POD_NUM -gt 1 ]];then
-#    sed -i '$a\cluster.initial_master_nodes' /usr/share/elasticsearch/config/elasticsearch.yml
-#    sed -i '$a\discovery.seed_hosts' /usr/share/elasticsearch/config/elasticsearch.yml
     ip=$(nslookup ${SERVICE_NAME} | grep Address | sed '1d' | awk '{print $2}')
     ips=$(echo $ip | tr ' ' ',')
     [[ $DEBUG ]] && echo ${ip} >> ./logfile
