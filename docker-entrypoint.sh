@@ -13,8 +13,8 @@ if [[ $CURRENT_POD_NUM -gt 1 ]];then
     ip=$(nslookup ${SERVICE_NAME} | grep Address | sed '1d' | awk '{print $2}')
     ips=$(echo $ip | tr ' ' ',')
     [[ $DEBUG ]] && echo ${ip} >> ./logfile
-    sed -i "s/cluster.initial_master_nodes*/cluster.initial_master_nodes: [${ips}]/g" /usr/share/elasticsearch/config/elasticsearch.yml
-    sed -i "s/discovery.seed_hosts*/discovery.seed_hosts: [${ips}]/g" /usr/share/elasticsearch/config/elasticsearch.yml
+    sed -i "s/^cluster.initial_master_nodes.*/cluster.initial_master_nodes: [${ips}]/g" /usr/share/elasticsearch/config/elasticsearch.yml
+    sed -i "s/^discovery.seed_hosts.*/discovery.seed_hosts: [${ips}]/g" /usr/share/elasticsearch/config/elasticsearch.yml
 fi
 
 [[ $DEBUG ]] && cat /usr/share/elasticsearch/config/elasticsearch.yml
