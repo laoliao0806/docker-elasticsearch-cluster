@@ -11,3 +11,4 @@ discovery.zen.minimum_master_nodes: 1
 xpack.license.self_generated.type: trial
 http.cors.enabled: true
 http.cors.allow-origin: /.*/
+node.max_local_storage_nodes: 2
