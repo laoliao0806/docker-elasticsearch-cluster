@@ -1,14 +1,33 @@
-cluster.name: "clusteres"
-network.host: POD_IP
+# 集群名称
+cluster.name: "es_cluster"
+
+# 节点名称
 node.name: HOSTNAME
+# 是否可以成为master节点
+node.master: true
+# 是否允许该节点存储数据,默认开启
+node.data: true
+
+# 网络绑定,绑定 POD_IP
+network.host: POD_IP
+
+# 设置对外服务的http端口，默认为9200
+http.port: 9200
+
+# 支持跨域访问
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+
+# 设置节点间交互的tcp端口,默认是9300
+transport.tcp.port: 9300
+
+# 其它设置
 xpack.security.enabled: false
+xpack.license.self_generated.type: trial
 client.transport.ping_timeout: 60s
 
-# minimum_master_nodes need to be explicitly set when bound on a public IP
-# set to 1 to allow single node clusters
-# Details: https://github.com/elastic/elasticsearch/pull/17288
-discovery.zen.minimum_master_nodes: 1
-xpack.license.self_generated.type: trial
-http.cors.enabled: true
-http.cors.allow-origin: /.*/
-#node.max_local_storage_nodes: 2
+# 手动指定可以成为 mater 的所有节点的 name 或者 ip，这些配置将会在第一次选举中进行计算
+#cluster.initial_master_nodes: ["127.0.0.1"]
+
+# 集群发现
+#discovery.seed_hosts: ["127.0.0.1:9300"]
