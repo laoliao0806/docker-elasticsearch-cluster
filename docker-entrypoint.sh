@@ -16,7 +16,9 @@ if [[ $CURRENT_POD_NUM -gt 1 ]];then
     sed -i "s/cluster.initial_master_nodes*/cluster.initial_master_nodes: [${ips}]/g" /usr/share/elasticsearch/config/elasticsearch.yml
     sed -i "s/discovery.seed_hosts*/discovery.seed_hosts: [${ips}]/g" /usr/share/elasticsearch/config/elasticsearch.yml
 fi
-    
+
+cat /usr/share/elasticsearch/config/elasticsearch.yml
+
 [[ $PAUSE ]] && sleep $PAUSE
-    
+
 exec $@
